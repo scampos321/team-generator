@@ -1,4 +1,4 @@
-const render = require('./page-template.js');
+const render = require('./src/page-template.js');
 const fs = require('fs');
 const path = require('path');
 const Manager = require('./lib/manager');
