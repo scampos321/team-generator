@@ -7,7 +7,7 @@ const Intern = require('./lib/intern');
 const Employee = require('./lib/employee');
 const inquirer = require('inquirer');
 const idArray = [];
-const teamMembers = [];
+
 
 const OUTPUT_DIR = path.resolve(__dirname, 'dist');
 const outputPath = path.join(OUTPUT_DIR, "index.html")
@@ -143,18 +143,21 @@ function renderTeam(){
     ]).then(userChoice => {
         switch (userChoice.teamChoice) {
             case "Engineer":
-                addEngineer();
+                createEngineer();
                 break;
             case "Intern":
-                addIntern();
+                createIntern();
                 break;
+            case "I don't want to add more team members":
+                writeFile(team);
             default:
-                createTeam();
+            writeFile(team);
+            break;
         }
     });
 }
 
-function addEngineer(){
+function createEngineer(){
     inquirer.prompt([
         {
             type: "input",
@@ -243,13 +246,13 @@ function addEngineer(){
     }
     ]).then(answers => {
         const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
-        teamMembers.push(engineer);
+        team.push(engineer);
         idArray.push(answers.engineerId);
-        createTeam();
+        renderTeam();
     });
 }
 
-function addIntern(){
+function createIntern(){
     inquirer.prompt([
         {
             type: "input",
@@ -337,10 +340,10 @@ function addIntern(){
          }
     }
     ]).then(answers => {
-        const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internGithub);
-        teamMembers.push(intern);
+        const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+        team.push(intern);
         idArray.push(answers.internId);
-        createTeam();
+        renderTeam();
     });
 }
 

@@ -1,7 +1,8 @@
-const generateTeam = team => {
-    const generateManager = manager => {
+const generateTeam = (team) => {
+    const generateManager = (manager) => {
         return `
         <h2 class="card-title">${manager.getName()}</h2>
+        <h3 class="card-title">${manager.getRole()}</h3>
         <ul class="list-group">
                 <li class="list-group-item">ID: ${manager.getId()}</li>
                 <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
@@ -13,6 +14,7 @@ const generateTeam = team => {
     const generateEngineer = (engineer) => {
         return `
         <h2 class="card-title">${engineer.getName()}</h2>
+        <h3 class="card-title">${engineer.getRole()}</h3>
         <ul class="list-group">
                 <li class="list-group-item">ID: ${engineer.getId()}</li>
                 <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
@@ -24,6 +26,7 @@ const generateTeam = team => {
     const generateIntern = (intern) => {
         return `
         <h2 class="card-title">${intern.getName()}</h2>
+        <h3 class="card-title">${intern.getRole()}</h3>
         <ul class="list-group">
                 <li class="list-group-item">ID: ${intern.getId()}</li>
                 <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
@@ -31,6 +34,7 @@ const generateTeam = team => {
         </ul>
         `;
     };
+
     const HTMLArray = [];
     HTMLArray.push(
         team
@@ -54,7 +58,7 @@ const generateTeam = team => {
     );
 
     return HTMLArray.join("");
-}
+};
 
 
 
